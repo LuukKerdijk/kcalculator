@@ -1,0 +1,52 @@
+<div class="relative">
+  <p
+    class="inline-block py-1 px-4 rounded-full text-xs text-secondary"
+    [class]="[
+      color() == 'red'
+        ? 'bg-accent-red'
+        : color() == 'pink'
+          ? 'bg-accent-pink'
+          : color() == 'orange'
+            ? 'bg-accent-orange'
+            : color() == 'blue'
+              ? 'bg-accent-blue'
+              : color() == 'purple'
+                ? 'bg-accent-purple'
+                : color() == 'turqoise'
+                  ? 'bg-accent-turqoise'
+                  : color() == 'green'
+                    ? 'bg-accent-green'
+                    : '',
+    ]"
+    (click)="toggleDescription()"
+  >
+    {{ title() }}
+  </p>
+  <div
+    class="absolute py-2 px-4 max-md:w-[100px] md:w-[200px] bg-secondary rounded-lg shadow-md shadow-shadow pointer-events-none duration-75 ease-in-out"
+    [class]="[
+      descriptionPosition?.x == 'right' ? 'right-0' : 'left-0',
+      descriptionPosition?.x == 'right'
+        ? 'translate-x-full'
+        : '-translate-x-full',
+      descriptionPosition?.y == 'bottom' ? 'bottom-0' : 'top-0',
+      descriptionPosition?.y == 'bottom'
+        ? 'translate-y-full'
+        : '-translate-y-full',
+      descriptionOpened ? 'opacity-100' : 'opacity-0',
+      descriptionPosition?.x == 'left' && descriptionPosition?.y == 'top'
+        ? 'rounded-ee-none'
+        : descriptionPosition?.x == 'right' && descriptionPosition?.y == 'top'
+          ? 'rounded-es-none'
+          : descriptionPosition?.x == 'right' &&
+              descriptionPosition?.y == 'bottom'
+            ? 'rounded-ss-none'
+            : descriptionPosition?.x == 'left' &&
+                descriptionPosition?.y == 'bottom'
+              ? 'rounded-se-none'
+              : '',
+    ]"
+  >
+    <p class="text-xs">{{ description() }}</p>
+  </div>
+</div>

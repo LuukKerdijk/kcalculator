@@ -1,0 +1,16 @@
+<div class="mx-h-small mt-24 mb-4 test">
+    <h1>Choose Recipe</h1>
+</div>
+<div class="mx-h-small mb-4 text-end">
+    <!-- <app-btn>
+        <p>Create Recipe</p>
+        <i class="material-symbols-outlined align-top font-extralight text-tertiary test">add</i>
+    </app-btn> -->
+</div>
+<div class="mx-h-small">
+    @for (recipe of recipes; track recipe) {
+        <div class="mb-4">
+            <app-recipe [recipe]="recipe"></app-recipe>
+        </div>
+    }
+</div>

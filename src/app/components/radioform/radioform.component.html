@@ -1,0 +1,19 @@
+<form class="flex flex-col overflow-hidden">
+  @for (item of list(); track item) {
+    <label class="block test">
+      <input
+        id="radioitem-{{ $index }}"
+        [formControl]="formControl"
+        name="listchoice"
+        type="radio"
+        [value]="item.value"
+        class="inline appearance-none peer"
+      />
+      <div
+        class="inline-block w-full py-2 px-4 peer-checked:bg-shadow text-nowrap rounded-lg"
+      >
+        <p class="text-secondary">{{ item.label }}</p>
+      </div>
+    </label>
+  }
+</form>

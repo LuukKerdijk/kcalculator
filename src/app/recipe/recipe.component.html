@@ -1,0 +1,46 @@
+
+<div id="recipe" class="flex flex-row gap-4 [&>*]:self-center test">
+    <!-- Left: recipe info | Right: arrow button -->
+    <app-card class="flex-grow">
+        <!-- Recipe info divided into two rows (dropdown) -->
+        <div class="flex flex-col gap-4">
+            <!-- First row: Left: Recipe title | Right: Metadata  -->
+            <div class="flex flex-row gap-4 justify-between [&>*]:self-center test">
+                <p class="test">{{ recipe.name }}</p>
+                <div class="flex flex-row gap-4 [&>*]:self-center">
+                    <div class="flex flex-row gap-1 [&>*]:self-center test">
+                        <!-- <app-icon class="test" [params]="iconProtein"></app-icon> -->
+                        <i class="material-symbols-outlined text-accent-blue font-extralight test">egg</i>
+                        <p class="text-accent-blue text-xl font-light">{{ recipe.properties.protein }}g</p>
+                        <p class="test">protein</p>
+                    </div>
+                    <div class="flex flex-row gap-1 [&>*]:self-center test">
+                        <i class="material-symbols-outlined font-extralight text-accent-red test">mode_heat</i>
+                        <p class="text-xl font-light text-accent-red test">{{ recipe.properties.kcal }}</p>
+                        <p class="test">kcal</p>
+                    </div>
+                    <i id="icon-dropdown" (click)="openRecipeInfo()" class="block material-symbols-outlined text-3xl text-tertiary font-thin duration-500 ease-in-out cursor-pointer test">expand_circle_down</i>
+                    <!-- <app-icon class="transition-all ease-in-out duration-500" (click)="openRecipeInfo()" [params]="iconRecipeDropdown" [style]="iconDropdownStyles"></app-icon> -->
+                </div>    
+            </div>
+            <!-- Second row: Left: recipe cover | Right: recipe ingredients -->
+            <div class="grid grid-cols-2 gap-4 overflow-hidden duration-1000 ease-in-out test" [class.hidden]="hasImage">
+                <div class="overflow-hidden test">
+                    <div class="h-28 flex flex-row justify-center relative border border-tertiary rounded-lg test">
+                        <i class="self-center material-symbols-outlined text-5xl text-tertiary font-thin test">error</i>
+                    </div>  
+                </div>
+                <div class="overflow-hidden test ">info</div>      
+            </div>
+            <div class="grid grid-cols-2 gap-4 transition-all ease-in-out duration-1000 test" [class.hidden]="!hasImage" [style]="recipeInfoStyles"> 
+                <div class="overflow-hidden test">
+                    <img class="test" [attr.src]="recipe.cover?.external?.url">
+                </div>
+                <div class="overflow-hidden test">info</div>
+            </div>
+        </div>
+    </app-card>
+    <!-- <app-btn type="primary-round">
+        <i class="material-symbols-outlined align-top text-4xl font-thin text-tertiary test">keyboard_arrow_right</i>
+    </app-btn> -->
+</div>

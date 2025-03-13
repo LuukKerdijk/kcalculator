@@ -1,0 +1,47 @@
+<app-card color="accent" border="primary" [shadow]="true">
+  <div id="cameraselector-content" class="inline-flex flex-col items-end">
+    <div
+      id="cameraselector-toggle"
+      class="inline-flex flex-row gap-1 justify-end cursor-pointer"
+      (click)="ToggleOpened()"
+    >
+      <div
+        id="icon-arrow-wrapper"
+        [style.scale]="listOpen ? '-1 1' : '1 1'"
+        class="flex flex-row justify-center w-[13px] overflow-hidden duration-500 ease-in-out test"
+      >
+        <i
+          id="icon-arrow"
+          class="material-symbols-outlined !text-secondary !text-[30px] !font-extralight test"
+          >keyboard_arrow_left</i
+        >
+      </div>
+      <i
+        id="icon-camera"
+        class="material-symbols-outlined !text-secondary !text-[30px] !font-extralight test"
+        >photo_camera</i
+      >
+    </div>
+    <div
+      id="cameraselector"
+      [style.width]="listOpen ? 'auto' : '0px'"
+      [style.height]="listOpen ? 'auto' : '0px'"
+      class="origin-top-right overflow-hidden duration-500 ease-in-out test"
+    >
+      <app-radioform
+        #radioform
+        [list]="cameras()"
+        (listItemSelected)="setSelectedCamera($event)"
+        class="block mt-2"
+      ></app-radioform>
+      <app-btn
+        color="secondary"
+        class="block mt-2 w-full text"
+        (click)="emitEventCameraChosen()"
+        (click)="ToggleOpened()"
+      >
+        <p #text class="block text-nowrap">Start Scanner!</p>
+      </app-btn>
+    </div>
+  </div>
+</app-card>
