@@ -1,0 +1,50 @@
+<div
+  class="relative flex flex-row gap-2 justify-center [&>*]:self-center cursor-pointer"
+  [class]="[
+    color() == 'primary'
+      ? 'bg-primary'
+      : color() == 'secondary'
+        ? 'bg-secondary'
+        : color() == 'tertiary'
+          ? 'bg-tertiary'
+          : color() == 'accent'
+            ? 'bg-accent'
+            : '',
+    border() ? 'border' : '',
+    border() == 'primary'
+      ? 'border-primary'
+      : border() == 'secondary'
+        ? 'border-secondary'
+        : border() == 'tertiary'
+          ? 'border-tertiary'
+          : border() == 'accent'
+            ? 'border-accent'
+            : '',
+    round() ? 'w-[50px]' : '',
+    round() ? 'h-[50px]' : '',
+    round() ? '' : 'py-2',
+    round() ? '' : 'px-4',
+    round() ? 'rounded-full' : 'rounded-lg',
+    shadow() ? 'shadow-md' : '',
+    shadow() ? 'shadow-shadow' : '',
+  ]"
+>
+  <ng-container #vcr></ng-container>
+  @if (this.async()) {
+    <app-loading
+      [color]="
+        contentColor() == 'dark'
+          ? 'dark'
+          : contentColor() == 'light'
+            ? 'light'
+            : ''
+      "
+      [style.opacity]="loading() ? '100' : '0'"
+      class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 h-[1lh]"
+    />
+  }
+</div>
+
+<ng-template #ngcontent>
+  <ng-content />
+</ng-template>

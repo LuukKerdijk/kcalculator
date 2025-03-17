@@ -1,0 +1,152 @@
+<div #recipeAndBtn class="flex flex-row gap-4 [&>*]:self-center">
+  <app-card class="flex-grow rounded-lg shadow-md shadow-shadow">
+    <div #infoAndDropdown class="flex flex-col gap-4">
+      <div
+        #info
+        class="flex flex-row gap-4 justify-between [&>*]:self-center test"
+      >
+        <p #infoLeft class="test">{{ recipe.name }}</p>
+        <div #infoRight class="flex flex-row gap-4 [&>*]:self-center">
+          <div class="flex flex-row gap-1 [&>*]:self-center test">
+            <i
+              class="material-symbols-outlined text-accent-blue !font-light test"
+              >egg</i
+            >
+            <p class="text-accent-blue text-xl font-light">
+              {{ recipe.protein }}g
+            </p>
+            <p class="test">protein</p>
+          </div>
+          <div class="flex flex-row gap-1 [&>*]:self-center test">
+            <i class="material-symbols-outlined text-accent-red !font-light"
+              >mode_heat</i
+            >
+            <p class="text-accent-red text-xl font-light">
+              {{ recipe.kcal }}
+            </p>
+            <p class="test">kcal</p>
+          </div>
+          <i
+            class="material-symbols-outlined text-tertiary !font-extralight duration-500 ease-in-out cursor-pointer test"
+            (click)="toggleDropdown()"
+            >expand_circle_down</i
+          >
+        </div>
+      </div>
+      <div
+        #dropdown
+        class="h-[100px] flex flex-row gap-4 overflow-hidden duration-500 ease-in-out"
+        [class]="[dropdownOpened ? 'h-auto' : 'h-[0px]']"
+      >
+        <div class="basis-0 grow h-full bg-accent-blue"></div>
+        <!--<div
+          #dropdownImage
+          class="basis-0 grow h-full border-shadow rounded-lg overflow-hidden text-center content-center test"
+          [class]="[recipe.cover ? '' : 'border']"
+        >
+          @if (recipe.cover) {
+            <img
+              [attr.src]="recipe.cover.external.url"
+              class="h-full object-cover"
+            />
+          } @else {
+            <i
+              class="material-symbols-outlined text-shadow !text-[50px] !font-thin"
+              >image</i
+            >
+          }
+        </div>-->
+        <div
+          #dropdownInfo
+          class="self-start basis-0 grow grid grid-cols-[2fr_1fr_1fr] gap-y-1 test"
+        >
+          @for (ingredient of recipe.ingredients; track ingredient) {
+            <div class="content-center">
+              <p class="text-sm font-light">
+                {{ ingredient.name }}
+              </p>
+            </div>
+            <div class="flex flex-row gap-1 [&>*]:self-center">
+              <i
+                class="material-symbols-outlined text-accent-blue !text-sm !font-medium"
+                >egg</i
+              >
+              <p class="text-accent-blue text-sm font-light">
+                {{ ingredient.protein }}g
+              </p>
+            </div>
+            <div class="flex flex-row gap-1 [&>*]:self-center">
+              <i
+                class="material-symbols-outlined text-accent-red !text-sm !font-light"
+                >mode_heat</i
+              >
+              <p class="text-accent-red text-sm font-light">
+                {{ ingredient.kcal }}
+              </p>
+            </div>
+          }
+        </div>
+      </div>
+      <!--<div
+        #dropdown
+        class="grid grid-cols-2 gap-4 overflow-hidden duration-500 ease-in-out"
+        [class]="[dropdownOpened ? 'h-auto' : 'h-[0px]']"
+      >
+        <div
+          #dropdownImage
+          class="min-h-[50px] border-shadow rounded-lg overflow-hidden text-center content-center"
+          [class]="[recipe.cover ? '' : 'border']"
+        >
+          @if (recipe.cover) {
+            <img
+              [attr.src]="recipe.cover.external.url"
+              class="h-full object-cover"
+            />
+          } @else {
+            <i
+              class="material-symbols-outlined text-shadow !text-[50px] !font-thin"
+              >image</i
+            >
+          }
+        </div>
+        <div class="test">
+          <div
+            #dropdownInfo
+            class="grid grid-cols-[2fr_1fr_1fr] gap-y-1 border border-red-200"
+          >
+            @for (ingredient of recipe.ingredients; track ingredient) {
+              <div class="content-center border border-tertiary">
+                <p class="text-sm font-light">
+                  {{ ingredient.name }}
+                </p>
+              </div>
+              <div class="flex flex-row gap-1 [&>*]:self-center">
+                <i
+                  class="material-symbols-outlined text-accent-blue !text-sm !font-medium"
+                  >egg</i
+                >
+                <p class="text-accent-blue text-sm font-light">
+                  {{ ingredient.protein }}g
+                </p>
+              </div>
+              <div class="flex flex-row gap-1 [&>*]:self-center test">
+                <i
+                  class="material-symbols-outlined text-accent-red !text-sm !font-light"
+                  >mode_heat</i
+                >
+                <p class="text-accent-red text-sm font-light">
+                  {{ ingredient.kcal }}
+                </p>
+              </div>
+            }
+          </div>
+        </div>
+      </div>-->
+    </div>
+  </app-card>
+  <app-btn [round]="true" color="primary" [shadow]="true">
+    <i class="material-symbols-outlined text-tertiary !font-extralight"
+      >calendar_add_on</i
+    >
+  </app-btn>
+</div>

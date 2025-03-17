@@ -1,0 +1,68 @@
+<app-nav [user]="user" class="fixed top-0 left-0 z-10 w-full"></app-nav>
+
+@switch (phase) {
+  @case ("authprompting") {
+    <div
+      class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 max-md:w-full md:w-[600px] px-4 test"
+    >
+      <app-card
+        id="introduction-card"
+        [shadow]="true"
+        class="max-md:w-full md:w-[500px]"
+      >
+        <div class="flex flex-col gap-4">
+          <h1>Welcome to Kcalculator!</h1>
+          <p>
+            Kcalculator uses Notion to store your personal food data. Please
+            authorize Kcalculator to use your Notion data, or create an account
+            first!
+          </p>
+          <div class="flex max-md:flex-col md:flex-row gap-4">
+            <a
+              target="_self"
+              href="https://api.notion.com/v1/oauth/authorize?client_id=17ad872b-594c-806d-b655-0037f82b7d19&response_type=code&owner=user&redirect_uri=https%3A%2F%2Fdev.kcalculator%3A4200"
+              class="md:order-2"
+            >
+              <app-btn id="btn-authorize" color="primary">
+                <i
+                  #icon
+                  id="icon-authorize"
+                  class="material-symbols-outlined !text-3xl !font-light"
+                >
+                  lock_open
+                </i>
+                <p #text>Authorize Kcalculator!</p>
+              </app-btn>
+            </a>
+            <p class="max-md:block md:hidden">Don't have an account yet?</p>
+            <div class="md:order-1 flex flex-col gap-4 justify-center">
+              <a href="https://www.notion.so/login">
+                <app-btn id="btn-login" border="tertiary">
+                  <div class="py-[6px] px-[3px]">
+                    <img
+                      #icon
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Notion-logo.svg/2048px-Notion-logo.svg.png"
+                      class="h-[1lh]"
+                    />
+                  </div>
+                  <p #text>Create Notion Account</p>
+                </app-btn>
+              </a>
+            </div>
+          </div>
+        </div>
+      </app-card>
+    </div>
+  }
+  @case ("authenticating") {
+    <app-loading-screen text="{{ phase }}..." />
+  }
+  @case ("fetching") {
+    <app-loading-screen text="{{ phase }} appdata..." />
+  }
+  @case ("routing") {
+    <div class="mt-[150px]">
+      <router-outlet />
+    </div>
+  }
+}

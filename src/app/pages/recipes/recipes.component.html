@@ -1,0 +1,18 @@
+<div class="flex flex-col gap-10 max-md:mx-4 md:mx-sides test">
+  <div class="flex flex-row justify-between">
+    <h1>Recipes</h1>
+    <app-btn color="primary" [shadow]="true" class="self-end">
+      <p #text>Create Recipe</p>
+      <i #icon class="material-symbols-outlined text-tertiary !font-light"
+        >add</i
+      >
+    </app-btn>
+  </div>
+  <div class="flex flex-col gap-4">
+    @for (recipe of recipes; track recipe) {
+      <div class="">
+        <app-recipe [recipe]="recipe"></app-recipe>
+      </div>
+    }
+  </div>
+</div>

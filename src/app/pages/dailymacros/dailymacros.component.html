@@ -1,0 +1,101 @@
+<div class="mx-sides">
+  <h1>Daily Macros!</h1>
+</div>
+
+<div
+  id="fullscreen-barcodescanner"
+  class="fixed top-0 left-0 z-20 h-full w-full p-4 bg-tertiary"
+  [class]="[!barcodeScannerOpened ? 'hidden' : '']"
+>
+  <ce-barcode-scanner
+    #barcodescanner
+    class="block h-full w-full rounded-lg overflow-hidden"
+  >
+  </ce-barcode-scanner>
+  <div
+    id="barcodescanner-input"
+    class="flex flex-col gap-2 items-end absolute top-0 right-0 z-20 mt-4 mr-4"
+  >
+    <app-btn
+      color="accent"
+      border="primary"
+      [shadow]="true"
+      contentColor="light"
+      (click)="stopScanner()"
+      (click)="toggleBarcodeScanner()"
+    >
+      <i #icon class="material-symbols-outlined text-secondary !font-light"
+        >fullscreen_exit</i
+      >
+    </app-btn>
+    <app-cameraselector
+      [cameras]="cameras"
+      (cameraChosenEvent)="startScanner($event)"
+    >
+    </app-cameraselector>
+  </div>
+
+  <div
+    id="barcodescanner-output"
+    class="flex flex-col gap-4 h-3/4 w-full absolute bottom-0 left-0 z-30 py-2 px-4 bg-secondary rounded-t-lg shadow-top-md shadow-shadow duration-500 ease-in-out"
+    [class]="[scannedIngredient ? '' : 'translate-y-full']"
+  >
+    @if (scannedIngredient?.status == 1) {
+      <div
+        class="self-center h-[100px] w-[100px] shrink-0 bg-primary rounded-full overflow-hidden"
+      >
+        <img
+          src="{{ scannedIngredient?.product?.image_url }}"
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <div class="flex flex-row gap-4 [&>*]:self-center test">
+        <h2 class="test">{{ scannedIngredient?.product?.product_name }}</h2>
+      </div>
+      <div class="flex flex-row flex-wrap gap-1">
+        @for (brand of scannedIngredient?.product?.brands_tags; track brand) {
+          <app-label
+            title="{{ brand }}"
+            description="this (one of) the registered brand(s) of the scanned ingredient"
+            color="blue"
+          ></app-label>
+        }
+        @for (store of scannedIngredient?.product?.stores_tags; track store) {
+          <app-label title="{{ store }}" color="red"></app-label>
+        }
+      </div>
+      <h3>Nutrition Facts</h3>
+    } @else {
+      <div
+        class="self-center h-[100px] w-[100px] shrink-0 bg-primary rounded-full text-center content-center"
+      >
+        <i
+          #icon
+          class="material-symbols-outlined !block !font-extralight !text-[50px]"
+          >error</i
+        >
+      </div>
+      <h2 class="text-center text-accent-pink">
+        {{ scannedIngredient?.status_verbose }}!
+      </h2>
+    }
+    <div class="flex flex-col gap-4 absolute bottom-0 left-0 w-full p-4">
+      <hr class="w-1/2 border-t-[1px] border-shadow" />
+      <div class="flex flex-row gap-4 test">
+        <app-btn
+          color="secondary"
+          border="tertiary"
+          class="basis-0 grow"
+          (click)="rescanIngredient()"
+        >
+          <i #icon class="material-symbols-outlined">replay</i>
+          <p class="">Rescan</p>
+        </app-btn>
+        <app-btn color="primary" class="basis-0 grow h-full">
+          <i #icon class="material-symbols-outlined">check</i>
+          <p class="">Confirm</p>
+        </app-btn>
+      </div>
+    </div>
+  </div>
+</div>

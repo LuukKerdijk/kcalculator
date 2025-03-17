@@ -1,0 +1,28 @@
+<div
+  class="h-full py-2 px-4 rounded-lg"
+  [class]="[
+    color() == 'primary'
+      ? 'bg-primary'
+      : color() == 'secondary'
+        ? 'bg-secondary'
+        : color() == 'tertiary'
+          ? 'bg-tertiary'
+          : color() == 'accent'
+            ? 'bg-accent'
+            : '',
+    border() ? 'border' : '',
+    border() == 'primary'
+      ? 'border-primary'
+      : border() == 'secondary'
+        ? 'border-secondary'
+        : border() == 'tertiary'
+          ? 'border-tertiary'
+          : border() == 'accent'
+            ? 'border-accent'
+            : '',
+    shadow() ? 'shadow-md' : '',
+    shadow() ? 'shadow-shadow' : '',
+  ]"
+>
+  <ng-content />
+</div>

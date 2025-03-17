@@ -1,0 +1,63 @@
+<div
+  #nav
+  class="flex flex-col overflow-hidden shadow-md shadow-primary-shadow duration-1000 ease-in-out"
+  [class]="[
+    opened ? 'h-dvh' : 'h-[80px]',
+    opened ? 'bg-primary' : 'bg-secondary',
+  ]"
+>
+  <div #navBar class="h-[80px] flex flex-col shrink-0 px-4">
+    <div
+      #navContent
+      class="h-full flex flex-row justify-between [&>*]:self-center"
+    >
+      <a routerLink="/" class="h-full flex flex-row gap-4 [&>*]:self-center">
+        <img src="/images/logo.png" class="max-md:!h-[25px] md:!h-[30px]" />
+        <p class="max-md:text-xl md:text-2xl font-medium">Kcalculator</p>
+      </a>
+      <div id="profile" class="h-full flex flex-row gap-4 [&>*]:self-center">
+        @if (user()) {
+          <p class="text-sm text-end max-md:hidden">
+            welcome,<br />{{ user()?.username }}
+          </p>
+          <img [src]="user()?.avatarUrl" class="h-1/2 rounded-full test" />
+        }
+        <i
+          id="hamburger-menu"
+          (click)="opened ? (opened = false) : (opened = true)"
+          class="material-symbols-outlined max-md:!text-[25px] md:!text-[30px] !md:font-medium"
+        >
+          menu
+        </i>
+      </div>
+    </div>
+    <hr class="border-t-[1px] border-shadow" />
+  </div>
+  <div
+    #hambugerDropdown
+    class="flex flex-col flex-grow gap-2 p-4 overflow-hidden"
+  >
+    <app-btn color="secondary" routerLink="dailymacros">
+      <p #text>Daily Macros</p>
+    </app-btn>
+    <app-btn color="secondary" routerLink="ingredients">
+      <p #text>Manage Ingredients</p>
+    </app-btn>
+    <app-btn color="secondary" routerLink="recipes">
+      <p #text>Manage Recipes</p>
+    </app-btn>
+    <div class="flex flex-row gap-2 self-end">
+      <app-btn
+        (click)="refreshAppData()"
+        border="tertiary"
+        [async]="true"
+        [loading]="refreshingAppData"
+      >
+        <p #text>Refresh Data</p>
+      </app-btn>
+      <app-btn border="tertiary">
+        <p #text>Logout</p>
+      </app-btn>
+    </div>
+  </div>
+</div>

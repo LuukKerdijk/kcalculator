@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: Roboto, Arial;
+  --font-mono: "Roboto Mono", ui-monospace;
+
+  --color-primary: #ffc700;
+  --color-primary-light: #fff9e6;
+  --color-secondary: #ffffff;
+  --color-tertiary: #675100;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-highlight: rgba(255, 255, 255, 0.1);
+  --color-accent: #ab8601;
+  --color-accent-pink: #ff005c;
+  --color-accent-red: #ff6f6f;
+  --color-accent-blue: #00b5ee;
+  --color-accent-green: #a6d60c;
+  --color-accent-purple: #c05ce8;
+  --color-accent-turqoise: #4fddc5;
+  --color-accent-orange: #ff9f40;
+
+  --spacing-sides: 10%;
+
+  --shadow-md-top: 0 -4px 6px -1px var(--color-shadow);
+}
+
+@layer base {
+  .test {
+    @apply border border-solid border-red-600;
+  }
+
+  * {
+    @apply font-mono text-tertiary;
+    interpolate-size: allow-keywords;
+  }
+
+  p {
+    @apply max-md:text-sm;
+  }
+
+  h1 {
+    @apply max-md:text-2xl md:text-3xl font-bold;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-lg font-bold;
+  }
+
+  video {
+    @apply h-full object-cover;
+  }
+
+  i {
+    font-variation-settings:
+      "opsz" 48,
+      "FILL" 0,
+      "GRAD" 0 !important;
+  }
+}
